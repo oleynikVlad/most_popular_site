@@ -38,8 +38,8 @@ return [
     ],
     'seo' => [
         'meta' => [
-            'title' => 'Filament Blog',
-            'description' => 'This is filament blog seo meta description',
+            'title' => 'Good peoples bad peoples',
+            'description' => 'This is a site where you can find info about people',
             'keywords' => [],
         ],
     ],

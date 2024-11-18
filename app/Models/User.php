@@ -7,13 +7,13 @@ use Firefly\FilamentBlog\Traits\HasBlog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
+use SolutionForest\FilamentAccessManagement\Concerns\FilamentUserHelpers;
 
 class User extends Authenticatable
 {
-    use HasBlog;
-
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasBlog, HasFactory, Notifiable, FilamentUserHelpers, AuthenticationLoggable;
 
     /**
      * The attributes that are mass assignable.

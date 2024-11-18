@@ -18,6 +18,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use SolutionForest\FilamentAccessManagement\FilamentAccessManagementPanel;
+use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -29,7 +31,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->plugins([
-                Blog::make()
+                Blog::make(),
+                FilamentAccessManagementPanel::make(),
+                FilamentAuthenticationLogPlugin::make()
             ])
             ->colors([
                 'primary' => Color::Amber,
