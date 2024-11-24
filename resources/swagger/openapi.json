@@ -1,0 +1,1022 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User API",
+        "description": "API для управління користувачами.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:80/api/v1",
+            "description": "Локальний сервер"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "summary": "Отримати список всіх користувачів",
+                "tags": [
+                    "Юзери"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список користувачів успішно отриманий",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Створити нового користувача",
+                "tags": [
+                    "Юзери"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Користувач успішно створений",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Невірний запит"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "Отримати інформацію про конкретного користувача",
+                "tags": [
+                    "Юзери"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID користувача"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Інформація про користувача успішно отримана",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Користувача не знайдено"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Оновити інформацію про користувача",
+                "tags": [
+                    "Юзери"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID користувача"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Користувач успішно оновлений",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Користувача не знайдено"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Видалити користувача",
+                "tags": [
+                    "Юзери"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID користувача"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Користувач успішно видалений"
+                    },
+                    "404": {
+                        "description": "Користувача не знайдено"
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "summary": "Отримати список усіх категорій",
+                "tags": [
+                    "Категоріі"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список категорій успішно отриманий",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Створити нову категорію",
+                "tags": [
+                    "Категоріі"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Категорію успішно створено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Помилка в даних запиту"
+                    }
+                }
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "summary": "Отримати конкретну категорію",
+                "tags": [
+                    "Категоріі"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID категорії"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Категорію успішно отримано",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Категорія не знайдена"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Оновити категорію",
+                "tags": [
+                    "Категоріі"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID категорії"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Категорію успішно оновлено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Категорія не знайдена"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Видалити категорію",
+                "tags": [
+                    "Категоріі"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "ID категорії"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Категорію успішно видалено"
+                    },
+                    "404": {
+                        "description": "Категорія не знайдена"
+                    }
+                }
+            }
+        },
+        "/tags": {
+            "get": {
+                "summary": "Отримати всі теги",
+                "description": "Повертає список всіх тегів.",
+                "operationId": "getTags",
+                "tags": [
+                    "Теги"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список тегів",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "description": "ID тегу"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "description": "Назва тегу"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Помилка сервера"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Створити новий тег",
+                "description": "Створити новий тег, надаючи його назву.",
+                "operationId": "createTag",
+                "tags": [
+                    "Теги"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Назва тегу"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Тег успішно створено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "ID тегу"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Назва тегу"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Невірний запит, помилка валідації"
+                    },
+                    "500": {
+                        "description": "Помилка сервера"
+                    }
+                }
+            }
+        },
+        "/tags/{id}": {
+            "get": {
+                "summary": "Отримати тег за ID",
+                "description": "Отримати конкретний тег за його ID.",
+                "operationId": "getTagById",
+                "tags": [
+                    "Теги"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID тегу",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Тег знайдено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "ID тегу"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Назва тегу"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Тег не знайдено"
+                    },
+                    "500": {
+                        "description": "Помилка сервера"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Оновити тег",
+                "description": "Оновити тег за його ID.",
+                "operationId": "updateTag",
+                "tags": [
+                    "Теги"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID тегу",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Назва тегу"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Тег успішно оновлено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "ID тегу"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Назва тегу"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Невірний запит, помилка валідації"
+                    },
+                    "404": {
+                        "description": "Тег не знайдено"
+                    },
+                    "500": {
+                        "description": "Помилка сервера"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Видалити тег",
+                "description": "Видалити тег за його ID.",
+                "operationId": "deleteTag",
+                "tags": [
+                    "Теги"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID тегу",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Тег успішно видалено"
+                    },
+                    "404": {
+                        "description": "Тег не знайдено"
+                    },
+                    "500": {
+                        "description": "Помилка сервера"
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "summary": "Отримати всі пости",
+                "description": "Отримати список усіх постів.",
+                "operationId": "getPosts",
+                "tags": [
+                    "Пости"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список постів",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Новий пост"
+                                            },
+                                            "content": {
+                                                "type": "string",
+                                                "example": "Текст поста"
+                                            },
+                                            "cover_image": {
+                                                "type": "string",
+                                                "example": "images/cover1.jpg"
+                                            },
+                                            "cover_image_alt": {
+                                                "type": "string",
+                                                "example": "Фото до статті"
+                                            },
+                                            "sub_title": {
+                                                "type": "string",
+                                                "example": "Підзаголовок поста"
+                                            },
+                                            "slug": {
+                                                "type": "string",
+                                                "example": "novyj-post"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "published"
+                                            },
+                                            "category_ids": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "tag_ids": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Створити новий пост",
+                "description": "Створює новий пост з можливістю додавання зображення, підзаголовку, категорій та тегів.",
+                "operationId": "createPost",
+                "tags": [
+                    "Пости"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "description": "Заголовок поста",
+                                        "example": "Новий пост"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "description": "Зміст поста",
+                                        "example": "Текст поста"
+                                    },
+                                    "cover_image": {
+                                        "type": "string",
+                                        "description": "Шлях до зображення",
+                                        "example": "images/cover1.jpg"
+                                    },
+                                    "cover_image_alt": {
+                                        "type": "string",
+                                        "description": "Альт текст для зображення",
+                                        "example": "Фото до статті"
+                                    },
+                                    "sub_title": {
+                                        "type": "string",
+                                        "description": "Підзаголовок поста",
+                                        "example": "Підзаголовок поста"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "description": "Унікальний slug для поста",
+                                        "example": "novyj-post"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": ["draft", "published", "archived"],
+                                        "description": "Статус поста",
+                                        "example": "published"
+                                    },
+                                    "category_ids": {
+                                        "type": "array",
+                                        "description": "Масив ID категорій, до яких належить пост",
+                                        "items": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    },
+                                    "tag_ids": {
+                                        "type": "array",
+                                        "description": "Масив ID тегів, які прикріплені до поста",
+                                        "items": {
+                                            "type": "integer",
+                                            "example": 3
+                                        }
+                                    }
+                                },
+                                "required": ["title", "content", "slug", "status", "category_ids"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Пост успішно створено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Пост успішно створено!"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Новий пост"
+                                                },
+                                                "content": {
+                                                    "type": "string",
+                                                    "example": "Текст поста"
+                                                },
+                                                "cover_image": {
+                                                    "type": "string",
+                                                    "example": "images/cover1.jpg"
+                                                },
+                                                "cover_image_alt": {
+                                                    "type": "string",
+                                                    "example": "Фото до статті"
+                                                },
+                                                "sub_title": {
+                                                    "type": "string",
+                                                    "example": "Підзаголовок поста"
+                                                },
+                                                "slug": {
+                                                    "type": "string",
+                                                    "example": "novyj-post"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "published"
+                                                },
+                                                "category_ids": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "tag_ids": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "integer",
+                                                        "example": 3
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{id}": {
+            "get": {
+                "summary": "Отримати один пост",
+                "description": "Отримує один пост за його ID.",
+                "operationId": "getPostById",
+                "tags": [
+                    "Пости"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID поста для отримання",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Інформація про пост",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Новий пост"
+                                        },
+                                        "content": {
+                                            "type": "string",
+                                            "example": "Текст поста"
+                                        },
+                                        "cover_image": {
+                                            "type": "string",
+                                            "example": "images/cover1.jpg"
+                                        },
+                                        "cover_image_alt": {
+                                            "type": "string",
+                                            "example": "Фото до статті"
+                                        },
+                                        "sub_title": {
+                                            "type": "string",
+                                            "example": "Підзаголовок поста"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "novyj-post"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "published"
+                                        },
+                                        "category_ids": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer",
+                                                "example": 1
+                                            }
+                                        },
+                                        "tag_ids": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer",
+                                                "example": 3
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Пост не знайдений"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Видалити пост",
+                "description": "Видаляє пост за його ID.",
+                "operationId": "deletePost",
+                "tags": [
+                    "Пости"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID поста для видалення",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Пост успішно видалено",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Пост успішно видалено!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Пост не знайдений"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "john@example.com"
+                    }
+                }
+            },
+            "UserInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "john@example.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password123"
+                    }
+                },
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ]
+            },
+            "Category": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Technology"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "All about technology"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "technology"
+                    }
+                }
+            },
+            "CategoryInput": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Technology"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "All about technology"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "custom-slug"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        }
+    }
+}
+

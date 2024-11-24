@@ -14,7 +14,8 @@
         "oleynik/oleynik-blog": "^0.0.5",
         "rappasoft/laravel-authentication-log": "^4.0",
         "solution-forest/filament-access-management": "^2.2",
-        "tapp/filament-authentication-log": "^3.1"
+        "tapp/filament-authentication-log": "^3.1",
+        "wotz/laravel-swagger-ui": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
