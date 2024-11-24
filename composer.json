@@ -8,9 +8,9 @@
         "php": "^8.2",
         "bepsvpt/secure-headers": "^8.0",
         "filament/filament": "^3.2",
-        "firefly/filament-blog": "^2.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "oleynik/oleynik-blog": "^0.0.3",
         "rappasoft/laravel-authentication-log": "^4.0",
         "solution-forest/filament-access-management": "^2.2",
         "tapp/filament-authentication-log": "^3.1"
