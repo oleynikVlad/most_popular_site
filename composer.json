@@ -10,7 +10,8 @@
         "filament/filament": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "oleynik/oleynik-blog": "^0.0.3",
+        "mcamara/laravel-localization": "^2.0",
+        "oleynik/oleynik-blog": "^0.0.5",
         "rappasoft/laravel-authentication-log": "^4.0",
         "solution-forest/filament-access-management": "^2.2",
         "tapp/filament-authentication-log": "^3.1"
