@@ -12,8 +12,7 @@ use SolutionForest\FilamentAccessManagement\Concerns\FilamentUserHelpers;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasBlog, HasFactory, Notifiable, FilamentUserHelpers, AuthenticationLoggable;
+    use HasBlog, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

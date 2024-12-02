@@ -32,8 +32,6 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->plugins([
                 Blog::make(),
-                FilamentAccessManagementPanel::make(),
-                FilamentAuthenticationLogPlugin::make()
             ])
             ->colors([
                 'primary' => Color::Amber,

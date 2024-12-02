@@ -12,7 +12,6 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "rappasoft/laravel-authentication-log": "^4.0",
-        "solution-forest/filament-access-management": "^2.2",
         "tapp/filament-authentication-log": "^3.1"
     },
     "require-dev": {
